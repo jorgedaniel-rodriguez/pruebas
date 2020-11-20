@@ -23,7 +23,7 @@ Segundo semestre del 2020
 
 
 
-~~~
+```python
 # Los parámetros T, t_final y N son elegidos arbitrariamente
 
 import numpy as np
@@ -97,4 +97,4 @@ plt.xlabel(r'$\tau$')
 plt.ylabel(r'$R_{XX}(\tau)$')
 plt.legend()
 plt.show() 
-~~~
+```
