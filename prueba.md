@@ -14,15 +14,8 @@ Segundo semestre del 2020
 
 ---
 
-```html
-<html>
-  <head>
-  </head>
-</html>
-```  
-
 $$
-W(t) = X*\cos(\omega_o * t)
+\vec{X} = (X_1, X_2, X_3, \ldots, X_n)
 $$
 
 ```python
