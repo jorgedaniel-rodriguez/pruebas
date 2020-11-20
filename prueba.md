@@ -14,6 +14,15 @@ Segundo semestre del 2020
 
 ---
 
+```html
+<html>
+  <head>
+  </head>
+</html>
+```  
+
+
+
 ~~~
 # Los parámetros T, t_final y N son elegidos arbitrariamente
 
