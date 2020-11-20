@@ -21,7 +21,9 @@ Segundo semestre del 2020
 </html>
 ```  
 
-$W(t) = X\cos()\omega_o * t$
+$$
+W(t) = X*\cos(\omega_o * t)
+$$
 
 ```python
 # Los parámetros T, t_final y N son elegidos arbitrariamente
