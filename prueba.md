@@ -78,7 +78,7 @@ Las curvas presentes en la grafica son la funcion con diferentes valores provist
 
 Las diferentes amplitudes de las curvas presentes en la imagen anterior es debido a las variables aleatorias X y Y que responden a una forma gaussiana o normal.
 
-#### Correlación
+### Correlación
 
 Esta sección de código crea una grafica de la correlacion que existe entre las variables aleatorias, para ello, se crean las variables que almacenarán las condiciones de cambio en el tiempo como lo son el desplazamiento y la constante taus, luego se graficaran las curvas provenientes del valor teorico de correlación y además las curvas provenientes de los valores obtenidos de las variables aleatorias X y Y usando numpy con su metodo de correlación 'correlate'
 
