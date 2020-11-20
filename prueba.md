@@ -12,20 +12,23 @@ Segundo semestre del 2020
 * Carné: **A95284**
 * Grupo: **2**
 
----
+# `L4` - *Proceso aleatorio sinusoidal en fase y en cuadratura*
 
-$$
-\vec{X} = (X_1, X_2, X_3, \ldots, X_n)
-$$
+Para darle solución a un proceso aleatorio sinusoidal en fase y cuadratura se decidio utilizar el codigo provisto para este fin por el profesor,
+alterando las lineas de codigo pertinentes se logró alcanzar la solucion de dicho proceso aleatorio de manera satisfactoria, se procederá 
+a realizar una breve explicacion del codigo y los resultados obtenidos.
+
+Se importan todas las bibliotecas de python a utilizar
 
 ```python
-# Los parámetros T, t_final y N son elegidos arbitrariamente
-
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
+```
+se crean las constantes, las variables aleatorias y los vectores con los datos de las variables aleatorias que cumplen con los requerimientos del enunciado 
+y se procede a evaluar los datos dentro de la función y se almacena los resultados.
 
-
+```python
 
 # Creación del vector de tiempo y frecuencia
 T = 100			# número de elementos
@@ -51,7 +54,9 @@ for i in range(N):
 	W_t[i,:] = w_t
 	assert isinstance(w_t, object)
 	plt.plot(t, w_t)
-
+```
+Se grafica los datos obtenidos en funcion del tiempo y la media.
+```python
 # Promedio de las N realizaciones en cada instante (cada punto en t)
 P = [np.mean(W_t[:,i]) for i in range(len(t))]
 plt.plot(t, P, lw=4)
@@ -65,31 +70,8 @@ plt.title('Realizaciones del proceso aleatorio $X(t)$')
 plt.xlabel('$t$')
 plt.ylabel('$x_i(t)$')
 plt.show()
-
-# T valores de desplazamiento tau
-desplazamiento = np.arange(T)
-taus = desplazamiento/t_final
-
-# Inicialización de matriz de valores de correlación para las N funciones
-corr = np.empty((N, len(desplazamiento)))
-
-# Nueva figura para la autocorrelación
-plt.figure()
-
-# Cálculo de correlación para cada valor de tau
-for n in range(N):
-	for i, tau in enumerate(desplazamiento):
-		corr[n, i] = np.correlate(W_t[n,:], np.roll(W_t[n,:], tau))/T
-	plt.plot(taus, corr[n,:])
-
-# Valor teórico de correlación
-Rxx = varianza_cuad * np.cos(wo*taus)
-
-# Gráficas de correlación para cada realización y la
-plt.plot(taus, Rxx, '-.', lw=4, label='Correlación teórica')
-plt.title('Funciones de autocorrelación de las realizaciones del proceso')
-plt.xlabel(r'$\tau$')
-plt.ylabel(r'$R_{XX}(\tau)$')
-plt.legend()
-plt.show() 
 ```
+Se obtuvo la siguiente grafica
+
+![Proceso Aleatorio](https://github.com/jorgedaniel-rodriguez/Tema4/blob/main/Proceso_aleatorio.png)
+
