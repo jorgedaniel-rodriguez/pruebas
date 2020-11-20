@@ -25,8 +25,7 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 ```
-se crean las constantes, las variables aleatorias y los vectores con los datos de las variables aleatorias que cumplen con los requerimientos del enunciado 
-y se procede a evaluar los datos dentro de la función y se almacena los resultados.
+se crean las constantes, las variables aleatorias y los vectores con los datos de las variables aleatorias que cumplen con los requerimientos del enunciado; se procede a evaluar los datos dentro de la función y se almacena los resultados.
 
 ```python
 
@@ -75,3 +74,42 @@ Se obtuvo la siguiente grafica
 
 ![Proceso Aleatorio](https://github.com/jorgedaniel-rodriguez/Tema4/blob/main/Proceso_aleatorio.png)
 
+Las curvas presentes en la grafica son la funcion con diferentes valores provistos por las variables aleatorias, lo cual cumple perfectamente con con las curvas que se esperarian de un proceso sinosoidal, la media se expresa sin dejar a dudas en cero, esto se debe a que todas las curvas presentes en la grafica estan centradas en cero, por tanto la media de valores obtenidos será cero debido a la estructura con la que esta conformada las funciones sinosoidales y su periodo.
+
+Las diferentes amplitudes de las curvas presentes en la imagen anterior es debido a las variables aleatorias X y Y que responden a una forma gaussiana o normal.
+
+#Correlación
+
+Esta sección de código crea una grafica de la correlacion que existe entre las variables aleatorias, para ello, se crean las variables que almacenarán las condiciones de cambio en el tiempo como lo son el desplazamiento y la constante taus, luego se graficaran las curvas provenientes del valor teorico de correlación y además las curvas provenientes de los valores obtenidos de las variables aleatorias X y Y usando numpy con su metodo de correlación 'correlate'
+
+```python
+# T valores de desplazamiento tau
+desplazamiento = np.arange(T)
+taus = desplazamiento/t_final
+
+# Inicialización de matriz de valores de correlación para las N funciones
+corr = np.empty((N, len(desplazamiento)))
+
+# Nueva figura para la autocorrelación
+plt.figure()
+
+# Cálculo de correlación para cada valor de tau
+for n in range(N):
+	for i, tau in enumerate(desplazamiento):
+		corr[n, i] = np.correlate(W_t[n,:], np.roll(W_t[n,:], tau))/T
+	plt.plot(taus, corr[n,:])
+
+# Valor teórico de correlación
+Rxx = varianza_cuad * np.cos(wo*taus)
+
+# Gráficas de correlación para cada realización y la
+plt.plot(taus, Rxx, '-.', lw=4, label='Correlación teórica')
+plt.title('Funciones de autocorrelación de las realizaciones del proceso')
+plt.xlabel(r'$\tau$')
+plt.ylabel(r'$R_{XX}(\tau)$')
+plt.legend()
+plt.show()
+```
+Se obtuvo la siguiente grafica
+
+![Correlación](https://github.com/jorgedaniel-rodriguez/Tema4/blob/main/correlacion.png)
